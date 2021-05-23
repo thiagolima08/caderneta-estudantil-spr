@@ -1,47 +1,66 @@
 package br.edu.ifpb.cadernetaestudantilspr.controller;
 
 
+import br.edu.ifpb.cadernetaestudantilspr.model.Aluno;
+import br.edu.ifpb.cadernetaestudantilspr.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.MathContext;
 import java.util.List;
 
 @Controller
-@RequestMapping("/aluno")
+@RequestMapping("/alunos")
 public class AlunoController  {
 
     @Autowired
     private AlunoService alunoService;
 
+    @RequestMapping(method = RequestMethod.GET)
+    public ModelAndView buscarAlunos(ModelAndView modelAndView) {
+        modelAndView.setViewName("/alunos/list");
+        try {
+            List<Aluno> alunos = alunoService.getAlunos();
+            modelAndView.addObject("alunos", alunos);
+        } catch (Exception e) {
+            modelAndView.addObject("mensagem", e.getMessage());
+        }
+        return modelAndView;
+    }
 
-    public void excluir(Aluno aluno) {
-        alunoDAO.delete(aluno);
+    @RequestMapping("/{id}")
+    public String buscarAlunoPorId(@PathVariable("id") Long id, Model model, RedirectAttributes attr) {
+        Aluno aluno = alunoService.getAluno(id);
+        if (aluno != null) {
+            model.addAttribute("aluno", aluno);
+        } else {
+            attr.addFlashAttribute("mensagem", "Aluno não encontrado!");
+            model.addAttribute("aluno", new Aluno());
+        }
+        return "alunos/form";
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ModelAndView adicionarOuAlterarAluno(Aluno aluno, ModelAndView modelAndView, RedirectAttributes attr) {
+        alunoService.saveOrUpdate(aluno);
+        modelAndView.setViewName("redirect:/alunos");
+        attr.addFlashAttribute("mensagem", "Aluno salvo com sucesso!");
+        return modelAndView;
     }
 
 
-    public Aluno update(Aluno aluno) {
-        return alunoDAO.update(aluno);
-    }
-
-    public void refresh(Aluno aluno) {
-        alunoDAO.refresh(aluno);
-    }
-
-    public List<Aluno> findAll() {
-        return alunoDAO.findAll();
-    }
-
-    public Aluno find(Integer id) {
-        return alunoDAO.find(id);
-    }
-
-
-    public Aluno insert(Aluno aluno) {
-        return alunoDAO.insert(aluno);
+    @RequestMapping(value = "/{id}/delete")
+    public ModelAndView deletarAlunoPorId(@PathVariable("id") Long id, ModelAndView modelAndView,
+                                    RedirectAttributes attr) {
+        alunoService.delete(id);
+        modelAndView.setViewName("redirect:/alunos/list");
+        attr.addFlashAttribute("mensagem", "Aluno excluído!");
+        return modelAndView;
     }
 
 }
