@@ -1,6 +1,6 @@
 package br.edu.ifpb.cadernetaestudantilspr.service;
 
-import br.edu.ifpb.cadernetaestudantilspr.controller.repository.AlunoRepository;
+import br.edu.ifpb.cadernetaestudantilspr.repository.AlunoRepository;
 import br.edu.ifpb.cadernetaestudantilspr.model.Aluno;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
