@@ -15,7 +15,7 @@ public class Professor implements Serializable {
     private Integer id;
     @Column(unique = true)
     private String email;
-    private String password; // TODO criptografar
+    private String password;
 
     public Integer getId() {
         return id;
