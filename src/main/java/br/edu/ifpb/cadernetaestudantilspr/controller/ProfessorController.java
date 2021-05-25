@@ -1,5 +1,7 @@
 package br.edu.ifpb.cadernetaestudantilspr.controller;
 
+import br.edu.ifpb.cadernetaestudantilspr.exception.InvalidCredentialsException;
+import br.edu.ifpb.cadernetaestudantilspr.exception.ProfessorAlreadyRegisteredException;
 import br.edu.ifpb.cadernetaestudantilspr.model.Professor;
 import br.edu.ifpb.cadernetaestudantilspr.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +19,48 @@ public class ProfessorController {
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ModelAndView signUp(Professor professor, ModelAndView modelAndView, RedirectAttributes attr) {
-        professorService.saveProfessor(professor);
-        modelAndView.setViewName("redirect:/alunos");
-        attr.addFlashAttribute("mensagem", "Aluno salvo com sucesso!");
+        try {
+            professorService.saveProfessor(professor);
+            modelAndView.setViewName("redirect:/professor/signin");
+            attr.addFlashAttribute("mensagem", "Professor cadastrado com sucesso!");
+
+            return modelAndView;
+        } catch (ProfessorAlreadyRegisteredException ex) {
+            // TODO get ex.getMessage() and show to the user
+        }
+
+        return null;
+    }
+
+    @RequestMapping(value = "/signup")
+    public ModelAndView signUp(ModelAndView modelAndView) {
+        Professor professor = new Professor();
+
+        modelAndView.addObject("professor", professor);
+        modelAndView.setViewName("formprofessor");
 
         return modelAndView;
     }
 
-    /*
-    @RequestMapping(value = "/signin", method = RequestMethod.POST)
-    public ModelAndView signIn() {
-       // TODO
+    @RequestMapping(value = "/signin", method = RequestMethod.GET)
+    public ModelAndView signIn(ModelAndView modelAndView) {
+        Professor professor = new Professor();
+        modelAndView.addObject("professor", professor);
+        modelAndView.setViewName("loginprofessor");
+
+        return modelAndView;
     }
-     */
+
+    @RequestMapping(value = "/signin", method = RequestMethod.POST)
+    public ModelAndView signIn(Professor professor, ModelAndView modelAndView) {
+        try {
+            professorService.signIn(professor);
+            modelAndView.setViewName("redirect:/home");
+            return modelAndView;
+        } catch(InvalidCredentialsException ex) {
+            // TODO get ex.getMessage() and show to the user
+        }
+
+        return null;
+    }
 }

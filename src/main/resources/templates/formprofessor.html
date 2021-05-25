@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Cadastrar professor</h1>
+<form action="signup" method="post" th:object="${professor}">
+    <label for="email">email</label>
+    <input id="email" type="email" th:field="*{email}"/>
+
+    <label for="password">senha</label>
+    <input id="password" type="password" th:field="*{password}"/>
+
+    <button type="submit">cadastrar</button>
+</form>
+</body>
+</html>
