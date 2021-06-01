@@ -29,7 +29,7 @@ public class ProfessorService {
         }
 
         if (!professorExist.verifyPassword(professor.getPassword())) {
-            throw new InvalidCredentialsException("Password incorreta");
+            throw new InvalidCredentialsException("Senha incorreta");
         }
     }
 }

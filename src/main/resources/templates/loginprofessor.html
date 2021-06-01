@@ -10,7 +10,7 @@
 <header th:insert="components/nav.html" ></header>
 <div class="container">
     <h2>Entrar como professor</h2>
-    <br>
+    <br />
     <form action="#" th:object="${professor}" method="post">
         <div class="form-group col-6" style="padding: 0">
             <label for="email" class="sr-only">Email</label>
@@ -24,6 +24,10 @@
         </div>
         <button type="submit" class="btn btn-primary">Entrar</button>
     </form>
+    <br />
+    <div th:if="${errorMessage}" class="alert alert-danger">
+        <strong th:text="${errorMessage}"></strong>
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

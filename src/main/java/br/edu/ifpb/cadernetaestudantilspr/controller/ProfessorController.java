@@ -26,10 +26,12 @@ public class ProfessorController {
 
             return modelAndView;
         } catch (ProfessorAlreadyRegisteredException ex) {
-            // TODO get ex.getMessage() and show to the user
+            modelAndView.setViewName("formprofessor");
+            modelAndView.addObject("errorMessage", ex.getMessage());
+
+            return modelAndView;
         }
 
-        return null;
     }
 
     @RequestMapping(value = "/signup")
@@ -58,9 +60,10 @@ public class ProfessorController {
             modelAndView.setViewName("redirect:/home");
             return modelAndView;
         } catch(InvalidCredentialsException ex) {
-            // TODO get ex.getMessage() and show to the user
-        }
+            modelAndView.setViewName("loginprofessor");
+            modelAndView.addObject("errorMessage", ex.getMessage());
 
-        return null;
+            return modelAndView;
+        }
     }
 }
