@@ -10,7 +10,7 @@
 <div class="container">
     <h2>Cadastrar professor</h2>
     <br>
-    <form action="/professor/signup" method="post" th:object="${professor}">
+    <form th:action="@{/professor/signup}" method="post" th:object="${professor}">
         <div class="form-group col-6" style="padding: 0">
             <label class="sr-only" for="email">email</label>
             <input class="form-control" id="email" placeholder="Email" type="email" th:field="*{email}"/>

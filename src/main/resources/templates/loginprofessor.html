@@ -11,7 +11,7 @@
 <div class="container">
     <h2>Entrar como professor</h2>
     <br />
-    <form action="#" th:object="${professor}" method="post">
+    <form th:action="@{/professor/signin}" th:object="${professor}" method="post">
         <div class="form-group col-6" style="padding: 0">
             <label for="email" class="sr-only">Email</label>
             <input class="form-control" id="email" placeholder="Email" required autofocus th:field="*{email}"
