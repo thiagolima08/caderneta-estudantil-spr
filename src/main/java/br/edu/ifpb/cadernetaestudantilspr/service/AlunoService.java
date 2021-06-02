@@ -47,6 +47,8 @@ public class AlunoService {
         this.alunoRepository.deleteById(id);
     }
 
-
+    public void save(Aluno aluno) {
+        this.alunoRepository.save(aluno);
+    }
 
 }

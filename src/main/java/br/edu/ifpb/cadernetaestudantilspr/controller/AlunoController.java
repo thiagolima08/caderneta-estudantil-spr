@@ -24,7 +24,7 @@ public class AlunoController  {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView buscarAlunos(ModelAndView modelAndView) {
-        modelAndView.setViewName("/listar");
+        modelAndView.setViewName("home");
         try {
             List<Aluno> alunos = alunoService.getAlunos();
             modelAndView.addObject("alunos", alunos);
@@ -57,8 +57,8 @@ public class AlunoController  {
     }
 
     @RequestMapping(value = "/cadastrar-aluno", method = RequestMethod.POST)
-    public ModelAndView adicionarOuAlterarAluno(Aluno aluno, ModelAndView modelAndView, RedirectAttributes attr) {
-        alunoService.saveOrUpdate(aluno);
+    public ModelAndView adicionarAluno(Aluno aluno, ModelAndView modelAndView, RedirectAttributes attr) {
+        alunoService.save(aluno);
         modelAndView.setViewName("redirect:/alunos");
         attr.addFlashAttribute("mensagem", "Aluno salvo com sucesso!");
         return modelAndView;
