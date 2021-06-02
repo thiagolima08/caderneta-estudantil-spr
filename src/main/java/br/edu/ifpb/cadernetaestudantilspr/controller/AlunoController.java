@@ -2,6 +2,7 @@ package br.edu.ifpb.cadernetaestudantilspr.controller;
 
 
 import br.edu.ifpb.cadernetaestudantilspr.model.Aluno;
+import br.edu.ifpb.cadernetaestudantilspr.model.Professor;
 import br.edu.ifpb.cadernetaestudantilspr.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +24,7 @@ public class AlunoController  {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView buscarAlunos(ModelAndView modelAndView) {
-        modelAndView.setViewName("/alunos/list");
+        modelAndView.setViewName("/listar");
         try {
             List<Aluno> alunos = alunoService.getAlunos();
             modelAndView.addObject("alunos", alunos);
@@ -45,7 +46,17 @@ public class AlunoController  {
         return "alunos/form";
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/cadastrar-aluno")
+    public ModelAndView signUp(ModelAndView modelAndView) {
+        Aluno aluno = new Aluno();
+
+        modelAndView.addObject("aluno", aluno);
+        modelAndView.setViewName("cadastrar-aluno");
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/cadastrar-aluno", method = RequestMethod.POST)
     public ModelAndView adicionarOuAlterarAluno(Aluno aluno, ModelAndView modelAndView, RedirectAttributes attr) {
         alunoService.saveOrUpdate(aluno);
         modelAndView.setViewName("redirect:/alunos");

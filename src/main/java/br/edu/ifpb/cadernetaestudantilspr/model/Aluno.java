@@ -1,16 +1,19 @@
 package br.edu.ifpb.cadernetaestudantilspr.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "tb_aluno")
 public class Aluno implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	
+
 	// ATTRIBUTES
 
 	@Id
@@ -18,9 +21,11 @@ public class Aluno implements Serializable {
 	private Long id;
 
 	private String nome;
-	
-	//private Date datanascimento;
-	private LocalDate datanascimento;
+
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="dd-MMM-YYYY")
+	private Date datanascimento;
+//	private LocalDate datanascimento;
 	
 	private Integer faltas;
 	
@@ -57,7 +62,7 @@ public class Aluno implements Serializable {
 	public Aluno() {}
 	
 	//public Aluno(String nome, Date datanascimento, Integer faltas, BigDecimal nota1, BigDecimal nota2, BigDecimal nota3,
-	public Aluno(String nome, LocalDate datanascimento, Integer faltas, BigDecimal nota1, BigDecimal nota2, BigDecimal nota3,
+	public Aluno(String nome, Date datanascimento, Integer faltas, BigDecimal nota1, BigDecimal nota2, BigDecimal nota3,
 			BigDecimal notaFinal) {
 		super();
 		this.nome = nome;
@@ -90,12 +95,12 @@ public class Aluno implements Serializable {
 	}
 
 	//public Date getDatanascimento() {
-	public LocalDate getDatanascimento() {
+	public Date getDatanascimento() {
 		return datanascimento;
 	}
 
 	//public void setDatanascimento(Date datanascimento) {
-	public void setDatanascimento(LocalDate datanascimento) {
+	public void setDatanascimento(Date datanascimento) {
 		this.datanascimento = datanascimento;
 	}
 

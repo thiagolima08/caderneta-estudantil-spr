@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<header th:insert="components/nav_home.html"></header>
+<div class="container">
+    <br>
+    <h2>Modificar Aluno</h2>
+    <br>
+    <form th:action="@{/alunos/cadastrar-aluno}" method="post" th:object="${aluno}">
+        <div class="form-group col-6" style="padding: 0">
+            <label class="sr-only" for="name">Nome</label>
+            <input class="form-control" id="name" placeholder="Nome" type="text" th:field="*{nome}"/>
+        </div>
+        <div class="form-group col-6" style="padding: 0">
+            <label class="sr-only" for="datanascimento">Data de Nascimento</label>
+            <input class="form-control" id="datanascimento" type="date" placeholder="Data de Nascimento" th:field="*{datanascimento}"/>
+        </div>
+        <div class="form-group col-6" style="padding: 0">'
+            <label class="sr-only" for="faltas">Faltas</label>
+            <input class="form-control" id="faltas" type="number" placeholder="Faltas" th:field="*{faltas}"/>
+        </div>
+        <div class="form-group col-6" style="padding: 0">
+            <label class="sr-only" for="nota1">Nota 1</label>
+            <input class="form-control" id="nota1" type="number" placeholder="Nota 1" th:field="*{nota1}"/>
+        </div>
+        <div class="form-group col-6" style="padding: 0">
+            <label class="sr-only" for="nota2">Nota 2</label>
+            <input class="form-control" id="nota2" type="number" placeholder="Nota 2" th:field="*{nota2}"/>
+        </div>
+        <div class="form-group col-6" style="padding: 0">
+            <label class="sr-only" for="nota3">Nota 3</label>
+            <input class="form-control" id="nota3" type="number" placeholder="Nota 3" th:field="*{nota3}"/>
+        </div>
+        <div class="form-group col-6" style="padding: 0">
+            <label class="sr-only" for="final">Final</label>
+            <input class="form-control" id="final" type="number" placeholder="Final" th:field="*{notaFinal}"/>
+        </div>
+        <button class="btn btn-primary" type="submit">Cadastrar</button>
+    </form>
+    <div th:if="${errorMessage}" class="alert alert-danger">
+        <strong th:text="${errorMessage}"></strong>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

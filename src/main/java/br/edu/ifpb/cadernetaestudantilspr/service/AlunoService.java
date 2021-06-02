@@ -39,7 +39,7 @@ public class AlunoService {
             this.alunoRepository.save(alunoInserted.get());
             return alunoInserted.get();
         }
-        this.alunoRepository.save(alunoInserted.get());
+        this.alunoRepository.save(aluno);
         return alunoInserted.get();
     }
 
