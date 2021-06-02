@@ -22,27 +22,27 @@
 
         <div class="form-group col-6" style="padding: 0">
             <label class="sr-only" for="nota1">Nota 1</label>
-            <input class="form-control" id="nota1" placeholder="Nota 1" type="number" th:field="*{nota1}"/>
+            <input class="form-control" id="nota1" min="0" max="100" placeholder="Nota 1" type="number" th:field="*{nota1}"/>
         </div>
 
         <div class="form-group col-6" style="padding: 0">
             <label class="sr-only" for="nota2">Nota 2</label>
-            <input class="form-control" id="nota2" placeholder="Nota 2" type="number" th:field="*{nota2}"/>
+            <input class="form-control" id="nota2"min="0" max="100" placeholder="Nota 2" type="number" th:field="*{nota2}"/>
         </div>
 
         <div class="form-group col-6" style="padding: 0">
             <label class="sr-only" for="nota3">Nota 3</label>
-            <input class="form-control" id="nota3" placeholder="Nota 3" type="number" th:field="*{nota3}"/>
+            <input class="form-control" id="nota3"min="0" max="100" placeholder="Nota 3" type="number" th:field="*{nota3}"/>
         </div>
 
         <div class="form-group col-6" style="padding: 0">
             <label class="sr-only" for="faltas">Faltas</label>
-            <input class="form-control" id="faltas" placeholder="Faltas" type="number" th:field="*{faltas}"/>
+            <input class="form-control" id="faltas"min="0" max="100" placeholder="Faltas" type="number" th:field="*{faltas}"/>
         </div>
 
         <div class="form-group col-6" style="padding: 0">
             <label class="sr-only" for="faltas">Final</label>
-            <input disabled class="form-control" placeholder="Final" type="number" th:field="*{notaFinal}"/>
+            <input class="form-control"min="0" max="100" placeholder="Final" type="number" th:field="*{notaFinal}"/>
         </div>
 
 
