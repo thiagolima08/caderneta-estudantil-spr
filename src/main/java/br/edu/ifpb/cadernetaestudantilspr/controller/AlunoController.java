@@ -7,6 +7,7 @@ import br.edu.ifpb.cadernetaestudantilspr.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -71,6 +72,15 @@ public class AlunoController  {
         alunoService.delete(id);
         modelAndView.setViewName("redirect:/alunos/list");
         attr.addFlashAttribute("mensagem", "Aluno excluído!");
+        return modelAndView;
+    }
+
+    @RequestMapping("/edit/{id}")
+    public ModelAndView editaluno(@PathVariable("id") Long id, ModelAndView modelAndView) {
+        modelAndView.setViewName("cadastrar-aluno");
+        Aluno aluno = alunoService.getAluno(id);
+        modelAndView.addObject("aluno", aluno);
+
         return modelAndView;
     }
 

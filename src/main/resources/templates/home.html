@@ -13,12 +13,14 @@
         <tr>
             <th scope="col">Nome</th>
             <th scope="col">Data nascimento</th>
+            <th scope="col">Ações</th>
         </tr>
         </thead>
         <tbody th:each="aluno: ${alunos}">
         <tr>
             <td th:text="${aluno.nome}"></td>
             <td th:text="${aluno.datanascimento}"></td>
+            <td><a th:href="@{'/alunos/edit/' + ${aluno.id}}">edit</a></td>
         </tr>
         </tbody>
     </table>

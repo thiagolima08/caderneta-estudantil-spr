@@ -12,6 +12,15 @@
     <h2>Cadastrar Aluno</h2>
     <br>
     <form th:action="@{/alunos/cadastrar-aluno}" method="post" th:object="${aluno}">
+
+        <input type="hidden" th:field="*{id}" />
+        <input type="hidden" th:field="*{nota1}" />
+        <input type="hidden" th:field="*{nota2}" />
+        <input type="hidden" th:field="*{nota3}" />
+        <input type="hidden" th:field="*{faltas}" />
+        <input type="hidden" th:field="*{notaFinal}" />
+        <input type="hidden" th:field="*{situacao}" />
+
         <div class="form-group col-6" style="padding: 0">
             <label class="sr-only" for="name">Nome</label>
             <input class="form-control" id="name" placeholder="Nome" type="text" th:field="*{nome}"/>
@@ -20,7 +29,10 @@
             <label class="sr-only" for="datanascimento">Data de Nascimento</label>
             <input class="form-control" id="datanascimento" type="date" placeholder="Data de Nascimento" th:field="*{datanascimento}"/>
         </div>
-        <button class="btn btn-primary" type="submit">Cadastrar</button>
+        <button class="btn btn-primary" type="submit">
+            <span th:if="${aluno.id == null}">Cadastrar</span>
+            <span th:if="${aluno.id != null}">Atualizar</span>
+        </button>
     </form>
     <div th:if="${errorMessage}" class="alert alert-danger">
         <strong th:text="${errorMessage}"></strong>

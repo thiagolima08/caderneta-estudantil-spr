@@ -180,4 +180,8 @@ public class Aluno implements Serializable {
 			return false;
 		return true;
 	}
+
+    public boolean allowFinal() {
+        return this.getSituacao() != Aluno.Situacao.FN && this.getNotaFinal() == null;
+    }
 }
