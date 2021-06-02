@@ -27,7 +27,7 @@
     <tr>
         <th scope="row">1</th>
         <td th:text="${aluno.nome}"></td>
-        <td th:text="${aluno.datanascimento}"></td>
+        <td th:text="${#temporals.format(aluno.datanascimento, 'dd/MM/yyyy')}"></td>
         <td th:text="${aluno.nota1}"></td>
         <td th:text="${aluno.nota2}"></td>
         <td th:text="${aluno.nota3}"></td>

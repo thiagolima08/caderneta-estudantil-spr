@@ -181,6 +181,7 @@ public class Aluno implements Serializable {
 	}
 
     public boolean allowFinal() {
-        return this.getSituacao() != Aluno.Situacao.FN && this.getNotaFinal() == null;
+        return this.getSituacao() == Aluno.Situacao.FN;
     }
+
 }
