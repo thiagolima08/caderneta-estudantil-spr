@@ -22,10 +22,8 @@ public class Aluno implements Serializable {
 
 	private String nome;
 
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="dd-MMM-YYYY")
-	private Date datanascimento;
-//	private LocalDate datanascimento;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate datanascimento;
 	
 	private Integer faltas;
 	
@@ -61,8 +59,7 @@ public class Aluno implements Serializable {
 	
 	public Aluno() {}
 	
-	//public Aluno(String nome, Date datanascimento, Integer faltas, BigDecimal nota1, BigDecimal nota2, BigDecimal nota3,
-	public Aluno(String nome, Date datanascimento, Integer faltas, BigDecimal nota1, BigDecimal nota2, BigDecimal nota3,
+	public Aluno(String nome, LocalDate datanascimento, Integer faltas, BigDecimal nota1, BigDecimal nota2, BigDecimal nota3,
 			BigDecimal notaFinal) {
 		super();
 		this.nome = nome;
@@ -94,13 +91,11 @@ public class Aluno implements Serializable {
 		this.nome = nome;
 	}
 
-	//public Date getDatanascimento() {
-	public Date getDatanascimento() {
+	public LocalDate getDatanascimento() {
 		return datanascimento;
 	}
 
-	//public void setDatanascimento(Date datanascimento) {
-	public void setDatanascimento(Date datanascimento) {
+	public void setDatanascimento(LocalDate datanascimento) {
 		this.datanascimento = datanascimento;
 	}
 
