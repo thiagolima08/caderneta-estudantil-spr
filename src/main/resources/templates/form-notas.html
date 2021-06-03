@@ -44,11 +44,11 @@
 
         <div class="form-group col-6" style="padding: 0">
             <label class="sr-only" for="faltas">Final</label>
-            <div th:if="${!aluno.allowFinal}">
+            <div th:if="${aluno.allowFinal}">
                 <input class="form-control" min="0" max="100" placeholder="Final" type="number" th:field="*{notaFinal}"/>
             </div>
 
-            <div th:if="${aluno.allowFinal}">
+            <div th:if="${!aluno.allowFinal}">
                 <input class="form-control" disabled min="0" max="100" placeholder="Final" type="number" th:field="*{notaFinal}"/>
             </div>
 

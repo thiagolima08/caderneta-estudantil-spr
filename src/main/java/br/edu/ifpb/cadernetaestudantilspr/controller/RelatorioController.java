@@ -22,7 +22,6 @@ public class RelatorioController {
     public ModelAndView relatorio(ModelAndView modelAndView) {
         modelAndView.setViewName("relatorio");
         List<Aluno> alunos = alunoService.getAlunos();
-        System.out.println(alunos); // TODO remove
         modelAndView.addObject("alunos", alunos);
 
         return modelAndView;
